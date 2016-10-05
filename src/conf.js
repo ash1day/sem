@@ -27,9 +27,9 @@ const style = cytoscape.stylesheet()
   .selector('edge')
     .css({
       'label': 'data(value)',
-      // 'edge-text-rotation': 'autorotate',
+
       'text-outline-width': 2,
-      'font-size': '0.6em',
+      'font-size': '0.8em',
 
       'curve-style': 'bezier',
       'target-arrow-shape': 'triangle',
