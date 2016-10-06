@@ -1,4 +1,5 @@
 div.Graph {
-  width:  700px;
-  height: 700px;
+  width:  50%;
+  height: 60%;
+  float: left;
 }

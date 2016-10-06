@@ -11,7 +11,7 @@ class Graph extends Component{
     this.updateJson(this.props.json)
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     this.updateJson(nextProps.json)
   }
 
@@ -28,6 +28,7 @@ class Graph extends Component{
   build_graph(json) {
     let nodes = [], edges = []
     let p, group
+
     for (let name of json.names) {
       group = (payload.obs_names.includes(name)) ? 0 : 1
       nodes.push({ data: { id: name, name: name, group: group, value: 0 } })

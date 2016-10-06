@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Graph from './Graph'
+import Fit from './Fit'
 import { payload } from './Payload'   // XXX 仮実装
 import { payload2 } from './Payload2' // XXX
 import './App.css'
@@ -41,6 +42,7 @@ class App extends Component {
         <input type="button" onClick={this.handleClick} value="0" />
         <input type="button" onClick={this.handleClick} value="1" />
         <Graph json={this.state.json} />
+        <Fit json={this.state.json} />
       </div>
     )
   }

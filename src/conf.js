@@ -14,8 +14,8 @@ const style = cytoscape.stylesheet()
   .selector('node')
     .css({
       'content': 'data(name)',
-      'width':  'mapData(value, 0, 10, 30, 60)',
-      'height': 'mapData(value, 0, 10, 30, 60)',
+      'width':  'mapData(value, 0, 10, 30, 100)',
+      'height': 'mapData(value, 0, 10, 30, 100)',
       'shape': function(ele){ return groupToShape(ele.data('group')) },
       'text-valign': 'center',
       'color': 'white',
@@ -45,7 +45,7 @@ const style = cytoscape.stylesheet()
 
 export let conf = {
   style: style,
-  zoomingEnabled: false
+  zoomingEnabled: true
 }
 
 export let layout = {
@@ -72,7 +72,7 @@ export let layout = {
   fit: true,
 
   // Padding on fit
-  padding: 30,
+  padding: 10,
 
   // Constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
   boundingBox: undefined,
@@ -81,7 +81,7 @@ export let layout = {
   randomize: true,
 
   // Extra spacing between components in non-compound graphs
-  componentSpacing: 1000,
+  componentSpacing: 700,
 
   // Node repulsion (non overlapping) multiplier
   nodeRepulsion: function( node ){ return 100000; },
