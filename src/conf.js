@@ -12,13 +12,23 @@ const groupToAllowShape = (group) => {
   return (group === 'cov') ? 'triangle' : 'circle'
 }
 
+const valueToSize = (value) => {
+  // 0..10 to 30..90
+  return 6 * value + 30
+}
+
+const colorMap = 'mapData(value, 1, 3, #FBE9E7, #BF360C)'
+
 const style = cytoscape.stylesheet()
   .selector('node')
     .css({
       'content': 'data(name)',
-      'width':  'mapData(value, 0, 10, 30, 100)',
-      'height': 'mapData(value, 0, 10, 30, 100)',
-      'shape': function(ele){ return groupToShape(ele.data('group')) },
+      'width':  function(ele){
+        const c = (ele.data('group') === 'obs') ? 2 : 1
+        return c * valueToSize(ele.data('value'))
+      },
+      'height': function(ele){ return valueToSize(ele.data('value')) },
+      'shape':  function(ele){ return groupToShape(ele.data('group')) },
       'text-valign': 'center',
       'color': 'white',
       'text-outline-width': 2,
@@ -37,10 +47,10 @@ const style = cytoscape.stylesheet()
       'target-arrow-shape': 'triangle',
       'source-arrow-shape': function(ele){ return groupToAllowShape(ele.data('group')) },
 
-      'text-outline-color': 'mapData(value, 1, 3, #FBE9E7, #BF360C)',
-      'line-color':         'mapData(value, 1, 3, #FBE9E7, #BF360C)',
-      'source-arrow-color': 'mapData(value, 1, 3, #FBE9E7, #BF360C)',
-      'target-arrow-color': 'mapData(value, 1, 3, #FBE9E7, #BF360C)',
+      'text-outline-color': colorMap,
+      'line-color':         colorMap,
+      'source-arrow-color': colorMap,
+      'target-arrow-color': colorMap,
 
       'width': 'mapData(p, 0, 1, 5, 0)'
     })
