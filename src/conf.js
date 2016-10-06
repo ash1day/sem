@@ -1,13 +1,15 @@
 import cytoscape from 'cytoscape'
 
-const colors = ['#16a085', '#2980b9']
 const groupToColor = (group) => {
-  return (group !== undefined) ? colors[group] : '#ddd'
+  return (group === 'obs') ? '#16a085' : '#2980b9'
 }
 
-const shapes = ['roundrectangle', 'ellipse']
 const groupToShape = (group) => {
-  return (group !== undefined) ? shapes[group] : 'ellipse'
+  return (group === 'obs') ? 'roundrectangle' : 'ellipse'
+}
+
+const groupToAllowShape = (group) => {
+  return (group === 'cov') ? 'triangle' : 'circle'
 }
 
 const style = cytoscape.stylesheet()
@@ -33,7 +35,7 @@ const style = cytoscape.stylesheet()
 
       'curve-style': 'bezier',
       'target-arrow-shape': 'triangle',
-      'source-arrow-shape': 'circle',
+      'source-arrow-shape': function(ele){ return groupToAllowShape(ele.data('group')) },
 
       'text-outline-color': 'mapData(value, 1, 3, #FBE9E7, #BF360C)',
       'line-color':         'mapData(value, 1, 3, #FBE9E7, #BF360C)',

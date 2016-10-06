@@ -30,7 +30,7 @@ class Graph extends Component{
     let p, group
 
     for (let name of json.names) {
-      group = (payload.obs_names.includes(name)) ? 0 : 1
+      group = (payload.obs_names.includes(name)) ? 'obs' : 'lat'
       nodes.push({ data: { id: name, name: name, group: group, value: 0 } })
     }
 
@@ -54,7 +54,19 @@ class Graph extends Component{
       }
     }
 
+    // 共分散のリンク
+    for (const row_name in json.covariances) {
+      if(json.covariances.hasOwnProperty(row_name)) {
+        for (const co_obj of json.covariances[row_name]) {
+          const p = (co_obj['P(>|z|)']) ? co_obj['P(>|z|)'] : 0
+          edges.push({ data: { id: [row_name, co_obj.name].join('_'), source: row_name, target: co_obj.name, value: parseFloat(co_obj['Estimate']), p: p, group: 'cov' } })
+        }
+      }
+    }
+
+    // 直接効果の合計を計算
     for (const edge of edges) {
+      if (edge.data.group === 'cov') continue
       for (const node of nodes) {
         if (node.data.id === edge.data.source) {
           node.data.value += edge.data.value
