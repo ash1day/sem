@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   fetchJson = () => {
-    fetch('http://localhost:4567/sem', {
+    fetch('http://localhost/sem', {
       method: 'post',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(this.state.payload),
