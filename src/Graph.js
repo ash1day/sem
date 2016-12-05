@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import cytoscape from 'cytoscape'
 import { conf, layout } from './conf'
-import { payload } from './Payload' // XXX
 import './Graph.css'
 
 class Graph extends Component{
@@ -29,9 +28,10 @@ class Graph extends Component{
     let nodes = [], edges = []
     let p, group
 
+    console.log(json)
     for (let name of json.names) {
-      group = (payload.obs_names.includes(name)) ? 'obs' : 'lat'
-      nodes.push({ data: { id: name, name: name, group: group, value: 0 } })
+      // group = (payload.obs_names.includes(name)) ? 'obs' : 'lat'
+      // nodes.push({ data: { id: name, name: name, group: group, value: 0 } })
     }
 
     // 潜在変数の定義式より、ノードとリンクを作成
