@@ -4,26 +4,19 @@ import './Fit.css'
 const fitsKeyNames = [ 'gfi', 'agfi', 'rmr', 'cfi', 'aic', 'rmsea' ]
 
 class Fit extends Component {
-  componentDidMount() {
-    this.fits = this.props.json.goodness_of_fit
-  }
-
-  componentWillUpdate = (nextProps) => {
-    this.fits = nextProps.json.goodness_of_fit
-  }
-
   render() {
+    const fits = this.props.json.goodness_of_fit
     let rows = []
 
-    if (!this.fits) return <div className="Fit" />
+    if (!fits) return <div className="Fit" />
 
-    for (const k of Object.keys(this.fits).sort()) {
+    for (const k of Object.keys(fits).sort()) {
       if (fitsKeyNames.includes(k))
       rows.push(
         <tr key={k} >
           <th>{k.toUpperCase()}</th>
-          <td>{this.fits[k].split('.')[0]}</td>
-          <td>.{this.fits[k].split('.')[1]}</td>
+          <td>{fits[k].split('.')[0]}</td>
+          <td>.{fits[k].split('.')[1]}</td>
         </tr>
       )
     }

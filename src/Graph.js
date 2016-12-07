@@ -26,15 +26,15 @@ class Graph extends Component{
 
   build_graph(json) {
     let nodes = [], edges = []
-    let p, group
+    let p
 
-    console.log(json)
-    for (let name of json.names) {
-      // group = (payload.obs_names.includes(name)) ? 'obs' : 'lat'
-      // nodes.push({ data: { id: name, name: name, group: group, value: 0 } })
+    for (let key in json.names) {
+      for (let name of json.names[key]) {
+        nodes.push({ data: { id: name, name: name, group: key, value: 0 } })
+      }
     }
 
-    // 潜在変数の定義式より、ノードとリンクを作成
+    // 潜在変数の定義式より、リンクを作成
     for (const left_var in json.latent_variables) {
       if(json.latent_variables.hasOwnProperty(left_var)) {
         for (const right_var of json.latent_variables[left_var]) {
@@ -54,7 +54,7 @@ class Graph extends Component{
       }
     }
 
-    // 共分散のリンク
+    // 共分散のリンクを作成
     for (const row_name in json.covariances) {
       if(json.covariances.hasOwnProperty(row_name)) {
         for (const co_obj of json.covariances[row_name]) {
@@ -68,9 +68,7 @@ class Graph extends Component{
     for (const edge of edges) {
       if (edge.data.group === 'cov') continue
       for (const node of nodes) {
-        if (node.data.id === edge.data.source) {
-          node.data.value += edge.data.value
-        }
+        if (node.data.id === edge.data.source) node.data.value += edge.data.value
       }
     }
 
