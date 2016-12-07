@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import cytoscape from 'cytoscape'
 import { conf, layout } from './conf'
-import './Graph.css'
 
 class Graph extends Component{
   componentDidMount() {

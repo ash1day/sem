@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import './Fit.css'
 
 const fitsKeyNames = [ 'gfi', 'agfi', 'rmr', 'cfi', 'aic', 'rmsea' ]
 
