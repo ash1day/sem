@@ -14,7 +14,6 @@ class Graph extends Component{
   }
 
   updateJson(json) {
-    if (!Object.keys(json).length) return
     this.cy.json(this.build_graph(json))
     this.cy.layout(layout)
   }
