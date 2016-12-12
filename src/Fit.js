@@ -9,13 +9,22 @@ class Fit extends Component {
 
     if (!fits) return <div className="Fit" />
 
+    const style = {
+      tdLeft: {
+        textAlign: 'right'
+      },
+      tdRight: {
+        textAlign: 'left'
+      }
+    }
+
     for (const k of Object.keys(fits).sort()) {
       if (fitsKeyNames.includes(k))
       rows.push(
         <tr key={k} >
           <th>{k.toUpperCase()}</th>
-          <td>{fits[k].split('.')[0]}</td>
-          <td>.{fits[k].split('.')[1]}</td>
+          <td style={style.tdLeft} >{fits[k].split('.')[0]}</td>
+          <td style={style.tdRight} >.{fits[k].split('.')[1]}</td>
         </tr>
       )
     }
