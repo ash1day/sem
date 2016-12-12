@@ -84,7 +84,7 @@ export let layout = {
   fit: true,
 
   // Padding on fit
-  padding: 10,
+  padding: 5,
 
   // Constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
   boundingBox: undefined,
@@ -93,7 +93,7 @@ export let layout = {
   randomize: true,
 
   // Extra spacing between components in non-compound graphs
-  componentSpacing: 700,
+  componentSpacing: 300,
 
   // Node repulsion (non overlapping) multiplier
   nodeRepulsion: function( node ){ return 100000; },
